@@ -17,27 +17,22 @@ const pressure = document.getElementById('pressure');
 
 const forecastContainer = document.getElementById('forecast-container');
 
-// Event Listeners
 searchBtn.addEventListener('click', () => fetchWeatherData(cityInput.value));
 cityInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') fetchWeatherData(cityInput.value);
 });
 
-// Main Fetch Function
 async function fetchWeatherData(city) {
     if (!city) return;
 
     try {
-        // Clear previous errors
         errorMessage.style.display = 'none';
         errorMessage.innerText = '';
 
-        // Fetch Current Weather
         const currentRes = await fetch(`${BASE_URL}/weather?q=${city}&units=metric&appid=${API_KEY}`);
         if (!currentRes.ok) throw new Error('City not found');
         const currentData = await currentRes.json();
 
-        // Fetch Forecast (OpenWeather 5 day / 3 hour forecast)
         const forecastRes = await fetch(`${BASE_URL}/forecast?q=${city}&units=metric&appid=${API_KEY}`);
         const forecastData = await forecastRes.json();
 
@@ -50,7 +45,6 @@ async function fetchWeatherData(city) {
     }
 }
 
-// Update UI: Current Weather
 function updateCurrentWeather(data) {
     currentIcon.style.display = 'block';
     currentIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`;
@@ -63,14 +57,11 @@ function updateCurrentWeather(data) {
     pressure.innerText = `${data.main.pressure} hPa`;
 }
 
-// Update UI: Forecast Cards
 function updateForecast(data) {
-    forecastContainer.innerHTML = ''; // Clear existing cards
-    
-    // OpenWeather gives data every 3 hours. We'll grab the next 5 intervals for the UI.
+    forecastContainer.innerHTML = '';
+
     const forecastList = data.list.slice(0, 5); 
 
-    // CSS Classes for the gradients from your reference image
     const gradients = ['bg-gradient-1', 'bg-gradient-2', 'bg-gradient-3', 'bg-gradient-1', 'bg-gradient-2'];
 
     forecastList.forEach((item, index) => {
