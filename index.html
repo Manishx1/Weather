@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="header">
+            <div class="search-bar">
+                <input type="text" id="city-input" placeholder="Search city..." autocomplete="off">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            <div id="error-message" class="error-message"></div>
+        </header>
+
+        <section class="current-weather">
+            <img id="current-icon" src="https://openweathermap.org/img/wn/01d@4x.png" alt="Weather Icon" style="display: none;">
+            <h1 id="current-temp">--°</h1>
+            <p id="current-location">Enter a city to start</p>
+        </section>
+
+        <div class="tabs">
+            <span class="active">Today</span>
+            <span>Forecast</span>
+        </div>
+
+        <section class="forecast-section">
+            <div class="forecast-container" id="forecast-container">
+                </div>
+        </section>
+
+        <section class="additional-info">
+            <h3>Additional Info</h3>
+            <div class="info-grid">
+                <div class="info-card">
+                    <span class="label">Wind</span>
+                    <span class="value" id="wind-speed">-- m/s</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Humidity</span>
+                    <span class="value" id="humidity">-- %</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Visibility</span>
+                    <span class="value" id="visibility">-- km</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Pressure</span>
+                    <span class="value" id="pressure">-- hPa</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
